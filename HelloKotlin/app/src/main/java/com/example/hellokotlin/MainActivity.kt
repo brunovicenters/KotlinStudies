@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,10 +12,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val editMsg = findViewById<EditText>(R.id.editMsg)
-        val btnIr = findViewById<Button>(R.id.btnIr)
+        val btnMsg = findViewById<Button>(R.id.btnMsg)
 
-        btnIr.setOnClickListener {
-            editMsg.setText("Hello Kotlin")
+        btnMsg.setOnClickListener {
+            showDialog("Boas-vindas", "Olá, ${editMsg.text}")
         }
+
+    }
+
+    fun showDialog(title: String, message: String) {
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("OK", null)
+            .create()
+            .show()
     }
 }
