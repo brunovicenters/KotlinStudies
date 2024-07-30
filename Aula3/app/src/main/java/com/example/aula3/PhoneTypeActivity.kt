@@ -23,16 +23,16 @@ class PhoneTypeActivity : AppCompatActivity() {
         btnConfirm.setOnClickListener {
 
             if(validateFields(editName, editPhone, spTipoTel)) {
-                val msg = """Nome: ${editName.text}
-                    |Telefone: ${editPhone.text}
+                val msg = """${getString(R.string.phone_name)}: ${editName.text}
+                    |${getString(R.string.phone_number_input)}: ${editPhone.text}
                     |
-                    |Tipo de telefone
+                    |${getString(R.string.phone_type)}
                     |- ${spTipoTel.selectedItem}
                 """.trimMargin()
 
-                alert("Confirmado!", msg, this)
+                alert(getString(R.string.confirmed), msg, this)
             } else {
-                alert("Erro!", "Preencha todos os campos!", this)
+                alert(getString(R.string.error), getString(R.string.fill_all_fields), this)
             }
         }
     }
@@ -43,7 +43,7 @@ class PhoneTypeActivity : AppCompatActivity() {
 
     private fun loadSpinner(spinner: Spinner) {
 
-        val items = arrayOf("Selecione", "Residencial", "Comercial", "Celular", "Outros")
+        val items = arrayOf(getString(R.string.select), getString(R.string.home), getString(R.string.business), getString(R.string.mobile), getString(R.string.others))
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, items)
 

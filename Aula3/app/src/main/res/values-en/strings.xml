@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Views And Examples</string>
+    <string name="phone_name">Name</string>
+    <string name="phone_number_input">Phone number</string>
+    <string name="confirm_btn">Confirm</string>
+    <string name="mobile">Mobile</string>
+    <string name="business">Business</string>
+    <string name="select">Select</string>
+    <string name="home">Home</string>
+    <string name="others">Others</string>
+    <string name="error">Error!</string>
+    <string name="fill_all_fields">Fill all fields</string>
+    <string name="phone_type">Phone Type</string>
+    <string name="confirmed">Confirmed!</string>
+</resources>
