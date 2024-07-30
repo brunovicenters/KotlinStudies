@@ -27,16 +27,7 @@ class ExemploPronomeActivity : AppCompatActivity() {
                 }
                 else -> "You didn't choose anything"
             }
-            alert("Cadastrado com sucesso!", "Olá, $nome, você escolheu os pronomes $pronome")
+            alert("Cadastrado com sucesso!", "Olá, $nome, você escolheu os pronomes $pronome", this)
         }
-    }
-
-    fun alert(title: String, msg: String) {
-        AlertDialog.Builder(this)
-            .setTitle(title)
-            .setMessage(msg)
-            .setPositiveButton("OK", null)
-            .create()
-            .show()
     }
 }
