@@ -13,4 +13,8 @@
     <string name="fill_all_fields">Fill all fields</string>
     <string name="phone_type">Phone Type</string>
     <string name="confirmed">Confirmed!</string>
+    <string name="btn_define">Define</string>
+    <string name="time">Time</string>
+    <string name="data">Date</string>
+    <string name="calendar_icon">Calendar Icon</string>
 </resources>
