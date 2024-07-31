@@ -16,6 +16,9 @@ class ExemploPronomeActivity : AppCompatActivity() {
         val groupPronomes = findViewById<RadioGroup>(R.id.groupPronomes)
         val btnCadastrar = findViewById<Button>(R.id.btnCadastrar)
 
+        if(intent.hasExtra("nome")) {
+            editNome.setText(intent.getStringExtra("nome"))
+        }
 
         btnCadastrar.setOnClickListener {
             val nome = editNome.text.toString()

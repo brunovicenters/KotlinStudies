@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         // Intent Implicito
         binding.btnPronome.setOnClickListener {
             val intent = Intent("com.example.aula3")
+            intent.putExtra("nome", "Bruno Vicente")
             startActivity(intent)
         }
 
