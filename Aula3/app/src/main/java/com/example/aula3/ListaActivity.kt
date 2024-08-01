@@ -46,36 +46,42 @@ class ListaActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 0 && resultCode == RESULT_OK) {
-            val res = data?.getIntExtra("resposta", -1)
+        if (resultCode == RESULT_OK) {
 
-            val label = data?.getIntExtra("label", -1)
+            when (requestCode) {
+                0 -> {
+                    val res = data?.getIntExtra("resposta", -1)
 
-            when (res) {
-                1 -> alert("Questão 1 certa!", "Resposta está certa! É mesmo $label", this)
-                else -> alert("Questão 1 errada!", "Resposta errada, tente novamente", this)
-            }
-        }
+                    val label = data?.getIntExtra("label", -1)
 
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            val res = data?.getIntExtra("resposta", -1)
+                    when (res) {
+                        1 -> alert("Questão 1 certa!", "Resposta está certa! É mesmo $label", this)
+                        else -> alert("Questão 1 errada!", "Resposta errada, tente novamente", this)
+                    }
+                }
+                1 -> {
+                    val res = data?.getIntExtra("resposta", -1)
 
-            val label = data?.getIntExtra("label", -1)
+                    val label = data?.getIntExtra("label", -1)
 
-            when (res) {
-                2 -> alert("Questão 2 certa!", "Resposta está certa! É mesmo $label", this)
-                else -> alert("Questão 2 errada!", "Resposta errada, tente novamente", this)
-            }
-        }
+                    when (res) {
+                        2 -> alert("Questão 2 certa!", "Resposta está certa! É mesmo $label", this)
+                        else -> alert("Questão 2 errada!", "Resposta errada, tente novamente", this)
+                    }
+                }
+                2 -> {
+                    val res = data?.getIntExtra("resposta", -1)
 
-        if (requestCode == 2 && resultCode == RESULT_OK) {
-            val res = data?.getIntExtra("resposta", -1)
+                    val label = data?.getStringExtra("label")
 
-            val label = data?.getStringExtra("label")
-
-            when (res) {
-                1 -> alert("Questão 3 certa!", "Resposta está certa! É mesmo $label", this)
-                else -> alert("Questão 3 errada!", "Resposta errada, tente novamente", this)
+                    when (res) {
+                        1 -> alert("Questão 3 certa!", "Resposta está certa! É mesmo $label", this)
+                        else -> alert("Questão 3 errada!", "Resposta errada, tente novamente", this)
+                    }
+                }
+                else -> {
+                    alert("Questão inexistente!", "Tente uma questão existente", this)
+                }
             }
         }
     }
