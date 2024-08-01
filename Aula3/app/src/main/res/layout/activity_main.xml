@@ -43,4 +43,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnImagem"
             android:layout_marginTop="16dp"/>
+
+    <Button
+            android:text="6 - Quiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnQuiz"
+            android:layout_marginTop="16dp"/>
 </LinearLayout>

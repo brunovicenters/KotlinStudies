@@ -30,6 +30,12 @@ class QuestaoActivity : AppCompatActivity() {
         // Salva a resposta
         respIntent.putExtra("resposta", res)
 
+        when(res) {
+            0 -> respIntent.putExtra("label", intent.getIntExtra("res1", -1))
+            1 -> respIntent.putExtra("label", intent.getIntExtra("res2", -1))
+            2 -> respIntent.putExtra("label", intent.getIntExtra("res3", -1))
+        }
+
         // Passa o resultado
         setResult(RESULT_OK, respIntent)
 

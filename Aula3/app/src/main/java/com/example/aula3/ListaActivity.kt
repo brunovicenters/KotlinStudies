@@ -23,6 +23,24 @@ class ListaActivity : AppCompatActivity() {
             startActivityForResult(intent, 0)
         }
 
+        binding.btnQuestao2.setOnClickListener {
+            val intent = Intent(this, QuestaoActivity::class.java)
+            intent.putExtra("enunciado", "Quantos irmãos eu(Bruno Vicente) tenho?")
+            intent.putExtra("res1", 0)
+            intent.putExtra("res2", 4)
+            intent.putExtra("res3", 1)
+            startActivityForResult(intent, 1)
+        }
+
+        binding.btnQuestao3.setOnClickListener {
+            val intent = Intent(this, QuestaoStringActivity::class.java)
+            intent.putExtra("enunciado", "Qual é a mulher mais linda do mundo?")
+            intent.putExtra("res1", "Dua Lipa")
+            intent.putExtra("res2", "Tarsila Carvalho dos Reis")
+            intent.putExtra("res3", "Minha vovó")
+            startActivityForResult(intent, 2)
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -31,11 +49,34 @@ class ListaActivity : AppCompatActivity() {
         if (requestCode == 0 && resultCode == RESULT_OK) {
             val res = data?.getIntExtra("resposta", -1)
 
+            val label = data?.getIntExtra("label", -1)
+
             when (res) {
-                1 -> alert("Questão 1 certa!", "Resposta certa", this)
+                1 -> alert("Questão 1 certa!", "Resposta está certa! É mesmo $label", this)
                 else -> alert("Questão 1 errada!", "Resposta errada, tente novamente", this)
             }
+        }
 
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            val res = data?.getIntExtra("resposta", -1)
+
+            val label = data?.getIntExtra("label", -1)
+
+            when (res) {
+                2 -> alert("Questão 2 certa!", "Resposta está certa! É mesmo $label", this)
+                else -> alert("Questão 2 errada!", "Resposta errada, tente novamente", this)
+            }
+        }
+
+        if (requestCode == 2 && resultCode == RESULT_OK) {
+            val res = data?.getIntExtra("resposta", -1)
+
+            val label = data?.getStringExtra("label")
+
+            when (res) {
+                1 -> alert("Questão 3 certa!", "Resposta está certa! É mesmo $label", this)
+                else -> alert("Questão 3 errada!", "Resposta errada, tente novamente", this)
+            }
         }
     }
 }

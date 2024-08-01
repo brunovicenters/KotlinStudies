@@ -41,5 +41,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ImageActivity::class.java)
             startActivity(intent)
         }
+
+        binding.btnQuiz.setOnClickListener {
+            val intent = Intent(this, ListaActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
