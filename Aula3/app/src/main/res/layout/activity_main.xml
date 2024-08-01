@@ -50,4 +50,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnQuiz"
             android:layout_marginTop="16dp"/>
+
+    <Button
+            android:text="7 - Actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnActions"
+            android:layout_marginTop="16dp"/>
 </LinearLayout>
