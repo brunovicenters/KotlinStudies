@@ -1,6 +1,7 @@
 package com.example.aula3
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.aula3.databinding.ActivityListaBinding
@@ -55,8 +56,17 @@ class ListaActivity : AppCompatActivity() {
                     val label = data?.getIntExtra("label", -1)
 
                     when (res) {
-                        1 -> alert("Questão 1 certa!", "Resposta está certa! É mesmo $label", this)
-                        else -> alert("Questão 1 errada!", "Resposta errada, tente novamente", this)
+                        1 -> {
+                            alert("Questão 1 certa!", "Resposta está certa! É mesmo $label", this)
+                            binding.btnQuestao1.setBackgroundColor(Color.GREEN)
+                            binding.btnQuestao1.isEnabled = false
+                            binding.btnQuestao1.text = ("Certo!")
+                            binding.btnQuestao1.setTextColor(Color.BLACK)
+                        }
+                        else -> {
+                            alert("Questão 1 errada!", "Resposta errada, tente novamente", this)
+                            binding.btnQuestao1.setBackgroundColor(Color.RED)
+                        }
                     }
                 }
                 1 -> {
@@ -65,8 +75,17 @@ class ListaActivity : AppCompatActivity() {
                     val label = data?.getIntExtra("label", -1)
 
                     when (res) {
-                        2 -> alert("Questão 2 certa!", "Resposta está certa! É mesmo $label", this)
-                        else -> alert("Questão 2 errada!", "Resposta errada, tente novamente", this)
+                        2 -> {
+                            alert("Questão 2 certa!", "Resposta está certa! É mesmo $label", this)
+                            binding.btnQuestao2.setBackgroundColor(Color.GREEN)
+                            binding.btnQuestao2.isEnabled = false
+                            binding.btnQuestao2.text = ("Certo!")
+                            binding.btnQuestao2.setTextColor(Color.BLACK)
+                        }
+                        else -> {
+                            alert("Questão 2 errada!", "Resposta errada, tente novamente", this)
+                            binding.btnQuestao2.setBackgroundColor(Color.RED)
+                        }
                     }
                 }
                 2 -> {
@@ -75,9 +94,19 @@ class ListaActivity : AppCompatActivity() {
                     val label = data?.getStringExtra("label")
 
                     when (res) {
-                        1 -> alert("Questão 3 certa!", "Resposta está certa! É mesmo $label", this)
-                        else -> alert("Questão 3 errada!", "Resposta errada, tente novamente", this)
+                        1 -> {
+                            alert("Questão 3 certa!", "Resposta está certa! É mesmo $label", this)
+                            binding.btnQuestao3.setBackgroundColor(Color.GREEN)
+                            binding.btnQuestao3.isEnabled = false
+                            binding.btnQuestao3.text = ("Certo!")
+                            binding.btnQuestao3.setTextColor(Color.BLACK)
+                        }
+                        else -> {
+                            alert("Questão 3 errada!", "Resposta errada, tente novamente", this)
+                            binding.btnQuestao3.setBackgroundColor(Color.RED)
+                        }
                     }
+
                 }
                 else -> {
                     alert("Questão inexistente!", "Tente uma questão existente", this)
