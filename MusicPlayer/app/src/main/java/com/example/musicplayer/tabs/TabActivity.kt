@@ -20,10 +20,22 @@ class TabActivity : AppCompatActivity() {
 
         TabLayoutMediator(binding.tabLayout, binding.vwPager) { tab, position ->
             when (position) {
-                0 -> tab.text = "Albuns"
-                1 -> tab.text = "Artistas"
-                2 -> tab.text = "Recentes"
-                3 -> tab.text = "Config."
+                0 -> {
+                    tab.text = "Albuns"
+                    tab.icon = getDrawable(R.drawable.albumicon)
+                }
+                1 -> {
+                    tab.text = "Recentes"
+                    tab.icon = getDrawable(R.drawable.historyicon)
+                }
+                2 -> {
+                    tab.text = "Artistas"
+                    tab.icon = getDrawable(R.drawable.personicon)
+                }
+                3 -> {
+                    tab.text = "Config."
+                    tab.icon = getDrawable(R.drawable.settingsicon)
+                }
             }
         }.attach()
     }
