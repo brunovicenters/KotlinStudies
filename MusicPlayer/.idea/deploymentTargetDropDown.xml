@@ -5,6 +5,9 @@
       <entry key="BottomNavigationActivity">
         <State />
       </entry>
+      <entry key="NavigationViewActivity">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
