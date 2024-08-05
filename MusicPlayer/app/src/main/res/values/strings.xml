@@ -6,4 +6,6 @@
     <string name="artistas">Artistas</string>
     <string name="recentes">Recentes</string>
     <string name="configuracoes">Configurações</string>
+    <string name="open_menu">Abrir Menu</string>
+    <string name="close_menu">Fechar Menu</string>
 </resources>
