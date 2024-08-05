@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="@string/albuns"
+            android:icon="@drawable/albumicon"
+            android:id="@+id/albuns"
+            app:showAsAction="always"/>
+    <item
+            android:title="@string/recentes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/historyicon"
+            android:id="@+id/recentes"
+            app:showAsAction="always"/>
+    <item
+            android:title="@string/artistas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/personicon"
+            android:id="@+id/artistas"
+            app:showAsAction="always"/>
+    <item
+            android:title="@string/configuracoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/settingsicon"
+            android:id="@+id/configuracoes"
+            app:showAsAction="always"/>
+</menu>

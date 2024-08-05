@@ -13,7 +13,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/bottomNavigationView"/>
+            android:id="@+id/bottomNavigationView"
+            app:menu="@menu/bottomnav"
+            android:background="#673AB7"
+            app:itemIconTint="@color/bottom_nav"
+            app:labelVisibilityMode="unlabeled"
+            app:itemIconSize="40dp"/>
 
     <FrameLayout
             android:layout_width="0dp"
@@ -22,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintTop_toTopOf="parent"
-            >
+            android:id="@+id/container">
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
