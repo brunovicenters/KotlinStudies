@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Janelas e Exemplos</string>
+    <string name="phone_name">Nome</string>
+    <string name="phone_number_input">Telefone</string>
+    <string name="confirm_btn">Confirmar</string>
+    <string name="select">Selecione</string>
+    <string name="home">Residencial</string>
+    <string name="business">Comercial</string>
+    <string name="mobile">Celular</string>
+    <string name="others">Outros</string>
+    <string name="error">Erro!</string>
+    <string name="fill_all_fields">Preencha todos os campos!</string>
+    <string name="phone_type">Tipo de telefone</string>
+    <string name="confirmed">Confirmado!</string>
+    <string name="btn_define">Definir</string>
+    <string name="time">Tempo</string>
+    <string name="data">Data</string>
+    <string name="calendar_icon">Ícone de calendário</string>
+</resources>
