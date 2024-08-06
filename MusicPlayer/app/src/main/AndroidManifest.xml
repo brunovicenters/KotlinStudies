@@ -15,11 +15,11 @@
         <activity
                 android:name=".toolbarmenu.ToolbarMenuActivity"
                 android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN"/>-->
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER"/>-->
+<!--            </intent-filter>-->
         </activity>
         <activity
                 android:name=".toolbarmenu.OtherActivity"
@@ -45,7 +45,13 @@
         </activity>
         <activity
                 android:name=".materialcomponents.MaterialComponentsActivity"
-                android:exported="false"/>
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
                 android:name=".bottomnavigation.BottomNavigationActivity"
                 android:exported="true">
