@@ -3,6 +3,7 @@ package com.example.vycenotes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import com.example.vycenotes.databinding.ActivityListNotesBinding
 
 class ListNotesActivity : AppCompatActivity() {
@@ -18,5 +19,11 @@ class ListNotesActivity : AppCompatActivity() {
             val i = Intent(this, NewNoteActivity::class.java)
             startActivity(i)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+
+        return super.onCreateOptionsMenu(menu)
     }
 }
