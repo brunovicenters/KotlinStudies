@@ -18,7 +18,7 @@
         <activity
                 android:name=".ListNotesActivity"
                 android:exported="true"
-                android:label="Todas as notas">
+                android:label="Vyce Notes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
