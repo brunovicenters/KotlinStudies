@@ -1,10 +1,13 @@
 package com.example.vycenotes
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.preference.PreferenceManager
 import com.example.vycenotes.databinding.ActivityListNotesBinding
 import com.example.vycenotes.databinding.NotaBinding
 import com.google.android.material.snackbar.Snackbar
@@ -37,12 +40,27 @@ class ListNotesActivity : AppCompatActivity() {
 
         binding.container.removeAllViews()
 
+        val textColor = PreferenceManager.getDefaultSharedPreferences(this)
+            .getInt("textColor", Color.GRAY)
+        val bgColor = PreferenceManager.getDefaultSharedPreferences(this)
+            .getInt("noteColor", Color.GRAY)
+
         Notas.listaNotas.forEach {
+
+            Log.d("ListNotesActivity", "Background color: $bgColor")
+            Log.d("ListNotesActivity", "Text color: $textColor")
+
 
             val nota = NotaBinding.inflate(layoutInflater)
             nota.textTitulo.text = it.title
             nota.textDesc.text = it.desc
             nota.textUser.text = it.user
+
+            nota.textTitulo.setTextColor(textColor)
+            nota.textDesc.setTextColor(textColor)
+            nota.textUser.setTextColor(textColor)
+            nota.root.setCardBackgroundColor(bgColor)
+
 
             nota.root.setOnClickListener { card ->
                 val i = Intent(this, NewNoteActivity::class.java)
@@ -67,6 +85,10 @@ class ListNotesActivity : AppCompatActivity() {
         when(item.itemId) {
             R.id.userMenuItem -> {
                 val intent = Intent(this, UserActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.configMenuItem -> {
+                val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
             }
         }

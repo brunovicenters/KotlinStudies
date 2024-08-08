@@ -3,5 +3,6 @@
     <color name="colorPrimary">#5f9be3</color>
     <color name="colorPrimaryDark">#023675</color>
     <color name="colorAccent">#de7a00</color>
+    <color name="textDefaultColor">#D3D3D3</color>
     <color name="noteDefaultColor">#FFFFFF</color>
 </resources>
