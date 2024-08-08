@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.example.vycenotes.databinding.ActivityListNotesBinding
 import com.example.vycenotes.databinding.NotaBinding
 import com.google.android.material.snackbar.Snackbar
@@ -41,6 +42,7 @@ class ListNotesActivity : AppCompatActivity() {
             val nota = NotaBinding.inflate(layoutInflater)
             nota.textTitulo.text = it.title
             nota.textDesc.text = it.desc
+            nota.textUser.text = it.user
 
             nota.root.setOnClickListener { card ->
                 val i = Intent(this, NewNoteActivity::class.java)
@@ -59,5 +61,16 @@ class ListNotesActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu, menu)
 
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.userMenuItem -> {
+                val intent = Intent(this, UserActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -6,14 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".UserActivity"
-        android:id="@+id/etUsername">
+        >
 
     <EditText
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:inputType="text"
             android:ems="10"
-            android:id="@+id/editTextText"
+            android:id="@+id/etUsername"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
