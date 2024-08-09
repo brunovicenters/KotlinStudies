@@ -3,6 +3,7 @@ package com.example.vycenotes
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.room.Room
 import com.example.vycenotes.databinding.ActivityNewNoteBinding
 
 class NewNoteActivity : AppCompatActivity() {
@@ -23,15 +24,21 @@ class NewNoteActivity : AppCompatActivity() {
         var username = userPref.getString("user", "")
         if (username == null) username = ""
 
+        val db = Room.databaseBuilder(this, NotaDatabase::class.java, "notas")
+                    .build()
+
         binding.btnAdd.setOnClickListener {
             val nota : Nota = Nota(
-                binding.etTitle.text.toString(),
-                binding.etDesc.text.toString(),
-                username)
+                title = binding.etTitle.text.toString(),
+                desc = binding.etDesc.text.toString(),
+                user = username
+            )
 
-            Notas.listaNotas.add(nota)
-            Notas.newNote = true
-            finish()
+            Thread {
+                db.notaDao().insert(nota)
+                Notas.newNote = true
+                finish()
+            }.start()
         }
     }
 }

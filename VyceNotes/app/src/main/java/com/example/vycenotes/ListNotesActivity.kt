@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.preference.PreferenceManager
+import androidx.room.Room
 import com.example.vycenotes.databinding.ActivityListNotesBinding
 import com.example.vycenotes.databinding.NotaBinding
 import com.google.android.material.snackbar.Snackbar
@@ -45,33 +46,37 @@ class ListNotesActivity : AppCompatActivity() {
         val bgColor = PreferenceManager.getDefaultSharedPreferences(this)
             .getInt("noteColor", Color.GRAY)
 
-        Notas.listaNotas.forEach {
+        val db = Room.databaseBuilder(this, NotaDatabase::class.java, "notas")
+            .build()
 
-            Log.d("ListNotesActivity", "Background color: $bgColor")
-            Log.d("ListNotesActivity", "Text color: $textColor")
+        Thread{
+            val notas = db.notaDao().getAll()
+            runOnUiThread {
+                notas.forEach {
+
+                    val nota = NotaBinding.inflate(layoutInflater)
+                    nota.textTitulo.text = it.title
+                    nota.textDesc.text = it.desc
+                    nota.textUser.text = it.user
+
+                    nota.textTitulo.setTextColor(textColor)
+                    nota.textDesc.setTextColor(textColor)
+                    nota.textUser.setTextColor(textColor)
+                    nota.root.setCardBackgroundColor(bgColor)
 
 
-            val nota = NotaBinding.inflate(layoutInflater)
-            nota.textTitulo.text = it.title
-            nota.textDesc.text = it.desc
-            nota.textUser.text = it.user
+                    nota.root.setOnClickListener { card ->
+                        val i = Intent(this, NewNoteActivity::class.java)
+                        i.putExtra("title", it.title)
+                        i.putExtra("desc", it.desc)
+                        startActivity(i)
+                    }
 
-            nota.textTitulo.setTextColor(textColor)
-            nota.textDesc.setTextColor(textColor)
-            nota.textUser.setTextColor(textColor)
-            nota.root.setCardBackgroundColor(bgColor)
+                    binding.container.addView(nota.root)
 
-
-            nota.root.setOnClickListener { card ->
-                val i = Intent(this, NewNoteActivity::class.java)
-                i.putExtra("title", it.title)
-                i.putExtra("desc", it.desc)
-                startActivity(i)
+                }
             }
-
-            binding.container.addView(nota.root)
-
-        }
+        }.start()
 
     }
 
