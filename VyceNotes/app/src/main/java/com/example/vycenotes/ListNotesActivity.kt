@@ -35,6 +35,14 @@ class ListNotesActivity : AppCompatActivity() {
             Snackbar.make(this, binding.root, "Anotação criada!", Snackbar.LENGTH_SHORT).show()
             Notas.newNote = false
         }
+        if (Notas.erro) {
+            Snackbar.make(this, binding.root, "Erro!", Snackbar.LENGTH_SHORT)
+            Notas.erro = false
+        }
+        if (Notas.updated) {
+            Snackbar.make(this, binding.root, "Atualizado com sucesso!", Snackbar.LENGTH_SHORT).show()
+            Notas.updated = false
+        }
     }
 
     fun updateNotes() {
@@ -46,8 +54,7 @@ class ListNotesActivity : AppCompatActivity() {
         val bgColor = PreferenceManager.getDefaultSharedPreferences(this)
             .getInt("noteColor", Color.GRAY)
 
-        val db = Room.databaseBuilder(this, NotaDatabase::class.java, "notas")
-            .build()
+        val db = getDb(this)
 
         Thread{
             val notas = db.notaDao().getAll()
@@ -66,9 +73,10 @@ class ListNotesActivity : AppCompatActivity() {
 
 
                     nota.root.setOnClickListener { card ->
-                        val i = Intent(this, NewNoteActivity::class.java)
+                        val i = Intent(this, UpdateActivity::class.java)
                         i.putExtra("title", it.title)
                         i.putExtra("desc", it.desc)
+                        i.putExtra("id", it.id)
                         startActivity(i)
                     }
 

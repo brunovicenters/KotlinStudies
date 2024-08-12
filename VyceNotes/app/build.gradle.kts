@@ -49,6 +49,7 @@ dependencies {
     implementation("androidx.preference:preference:1.1.0")
     implementation("com.jaredrummler:colorpicker:1.1.0")
     implementation("androidx.room:room-runtime:2.2.6")
+    implementation("androidx.activity:activity:1.8.0")
     kapt("androidx.room:room-compiler:2.2.6")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

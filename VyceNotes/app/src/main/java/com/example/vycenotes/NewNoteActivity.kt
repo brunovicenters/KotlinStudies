@@ -14,18 +14,12 @@ class NewNoteActivity : AppCompatActivity() {
         binding = ActivityNewNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (intent.getStringExtra("title") != null) {
-            binding.etTitle.setText(intent.getStringExtra("title"))
-            binding.etDesc.setText(intent.getStringExtra("desc"))
-        }
-
         val userPref = getSharedPreferences("user_vnotes", Context.MODE_PRIVATE)
 
         var username = userPref.getString("user", "")
         if (username == null) username = ""
 
-        val db = Room.databaseBuilder(this, NotaDatabase::class.java, "notas")
-                    .build()
+        val db = getDb(this)
 
         binding.btnAdd.setOnClickListener {
             val nota : Nota = Nota(
