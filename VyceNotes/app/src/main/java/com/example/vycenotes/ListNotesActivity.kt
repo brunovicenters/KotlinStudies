@@ -59,24 +59,34 @@ class ListNotesActivity : AppCompatActivity() {
         Thread{
             val notas = db.notaDao().getAll()
             runOnUiThread {
-                notas.forEach {
+                notas.forEach { notaEntity ->
 
                     val nota = NotaBinding.inflate(layoutInflater)
-                    nota.textTitulo.text = it.title
-                    nota.textDesc.text = it.desc
-                    nota.textUser.text = it.user
+                    nota.textTitulo.text = notaEntity.title
+                    nota.textDesc.text = notaEntity.desc
+                    nota.textUser.text = notaEntity.user
 
                     nota.textTitulo.setTextColor(textColor)
                     nota.textDesc.setTextColor(textColor)
                     nota.textUser.setTextColor(textColor)
                     nota.root.setCardBackgroundColor(bgColor)
 
+                    nota.btnDelete.setOnClickListener {
+                        Thread {
+                            db.notaDao().delete(notaEntity)
+                            runOnUiThread {
+                                updateNotes()
+                                Snackbar.make(binding.root, "Nota deletada com sucesso!", Snackbar.LENGTH_SHORT).show()
+                            }
+                        }.start()
+                    }
+
 
                     nota.root.setOnClickListener { card ->
                         val i = Intent(this, UpdateActivity::class.java)
-                        i.putExtra("title", it.title)
-                        i.putExtra("desc", it.desc)
-                        i.putExtra("id", it.id)
+                        i.putExtra("title", notaEntity.title)
+                        i.putExtra("desc", notaEntity.desc)
+                        i.putExtra("id", notaEntity.id)
                         startActivity(i)
                     }
 
