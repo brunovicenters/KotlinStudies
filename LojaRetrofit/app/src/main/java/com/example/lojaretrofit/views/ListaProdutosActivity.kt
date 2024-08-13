@@ -2,6 +2,7 @@ package com.example.lojaretrofit.views
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lojaretrofit.api.ProdutoApi
 import com.example.lojaretrofit.databinding.ActivityListaProdutosBinding
@@ -48,6 +49,8 @@ class ListaProdutosActivity : AppCompatActivity() {
                 call: Call<List<Produto>>,
                 response: Response<List<Produto>>
             ) {
+                binding.progressBar.visibility = View.GONE
+
                 if (response.isSuccessful) {
                     val listaProdutos = response.body()
                     updateUI(listaProdutos)
@@ -64,6 +67,8 @@ class ListaProdutosActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Produto>>, t: Throwable) {
+                binding.progressBar.visibility = View.GONE
+
                 Snackbar.make(
                     binding.container,
                     "Não foi possível se conectar ao servidor",
@@ -75,6 +80,7 @@ class ListaProdutosActivity : AppCompatActivity() {
         }
 
         call.enqueue(callback)
+        binding.progressBar.visibility = View.VISIBLE
     }
 
     fun updateUI(list: List<Produto>?) {

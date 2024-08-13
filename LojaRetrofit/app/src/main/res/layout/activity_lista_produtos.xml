@@ -16,7 +16,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck">
+            tools:ignore="SpeakableTextPresentCheck"
+            android:id="@+id/scrollView2">
 
         <LinearLayout
                 android:id="@+id/container"
@@ -24,7 +25,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:orientation="vertical" />
+                android:orientation="vertical"/>
     </ScrollView>
+
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone"
+            android:indeterminate="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
