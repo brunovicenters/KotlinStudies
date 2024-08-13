@@ -9,6 +9,7 @@ import com.example.lojaretrofit.databinding.ActivityListaProdutosBinding
 import com.example.lojaretrofit.databinding.CardItemBinding
 import com.example.lojaretrofit.model.Produto
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -92,6 +93,10 @@ class ListaProdutosActivity : AppCompatActivity() {
 
             cardBinding.nome.text = it.nomeProduto
             cardBinding.preco.text = it.precProduto.toString()
+
+            Picasso.get()
+                .load("https://oficinacordova.azurewebsites.net/android/rest/produto/image/${it.idProduto}")
+                .into(cardBinding.imagem)
 
             binding.container.addView(cardBinding.root)
 
