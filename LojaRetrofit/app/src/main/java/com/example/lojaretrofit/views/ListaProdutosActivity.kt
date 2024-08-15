@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lojaretrofit.R
+import com.example.lojaretrofit.api.API
 import com.example.lojaretrofit.api.ProdutoApi
 import com.example.lojaretrofit.databinding.ActivityListaProdutosBinding
 import com.example.lojaretrofit.databinding.CardItemBinding
@@ -40,18 +41,6 @@ class ListaProdutosActivity : AppCompatActivity() {
     }
 
     fun updateProdutos() {
-
-        // Create retrofit instance
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://oficinacordova.azurewebsites.net")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        // Create service
-        val service = retrofit.create(ProdutoApi::class.java)
-
-        // Call the method
-        val call = service.getAll()
 
         val callback = object : Callback<List<Produto>> {
             override fun onResponse(
@@ -88,7 +77,8 @@ class ListaProdutosActivity : AppCompatActivity() {
             }
         }
 
-        call.enqueue(callback)
+        API.produto.getAll().enqueue(callback)
+
         turnOnLoading()
     }
 
