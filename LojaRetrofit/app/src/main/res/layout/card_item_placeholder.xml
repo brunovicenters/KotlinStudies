@@ -10,10 +10,13 @@
         app:cardUseCompatPadding="true"
         android:id="@+id/cardContainer">
 
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+
 
         <androidx.cardview.widget.CardView
                 android:layout_width="200dp"
@@ -27,30 +30,24 @@
             <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/no_image"
+                    app:srcCompat="@drawable/circle"
                     android:id="@+id/imagem"
                     android:backgroundTint="#FFFFFF"
                     android:contentDescription="No Image Found"/>
 
         </androidx.cardview.widget.CardView>
 
-        <TextView
-                android:id="@+id/nome"
+        <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_margin="8dp"
-                android:text="Nome"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:textSize="24sp"/>
+                android:background="#B4B4B4"/>
 
-        <TextView
-                android:id="@+id/preco"
+        <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="16dp"
                 android:layout_margin="8dp"
-                android:text="TextView"
-                android:textAlignment="textEnd"/>
+                android:background="#B4B4B4"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

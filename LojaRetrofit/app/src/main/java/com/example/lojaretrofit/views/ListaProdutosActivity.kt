@@ -1,13 +1,17 @@
 package com.example.lojaretrofit.views
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lojaretrofit.R
 import com.example.lojaretrofit.api.ProdutoApi
 import com.example.lojaretrofit.databinding.ActivityListaProdutosBinding
 import com.example.lojaretrofit.databinding.CardItemBinding
 import com.example.lojaretrofit.model.Produto
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import retrofit2.Call
@@ -51,6 +55,10 @@ class ListaProdutosActivity : AppCompatActivity() {
                 response: Response<List<Produto>>
             ) {
                 binding.progressBar.visibility = View.GONE
+                binding.container.visibility = View.VISIBLE
+                binding.shimmer.visibility = View.GONE
+
+                binding.shimmer.stopShimmer()
 
                 if (response.isSuccessful) {
                     val listaProdutos = response.body()
@@ -69,6 +77,10 @@ class ListaProdutosActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<Produto>>, t: Throwable) {
                 binding.progressBar.visibility = View.GONE
+                binding.container.visibility = View.VISIBLE
+                binding.shimmer.visibility = View.GONE
+
+                binding.shimmer.stopShimmer()
 
                 Snackbar.make(
                     binding.container,
@@ -82,6 +94,9 @@ class ListaProdutosActivity : AppCompatActivity() {
 
         call.enqueue(callback)
         binding.progressBar.visibility = View.VISIBLE
+        binding.container.visibility = View.INVISIBLE
+        binding.shimmer.visibility = View.VISIBLE
+        binding.shimmer.startShimmer()
     }
 
     fun updateUI(list: List<Produto>?) {
@@ -94,8 +109,21 @@ class ListaProdutosActivity : AppCompatActivity() {
             cardBinding.nome.text = it.nomeProduto
             cardBinding.preco.text = it.precProduto.toString()
 
+            val shimmer = Shimmer.ColorHighlightBuilder()
+                .setAutoStart(true)
+                .setDuration(1000)
+                .setBaseColor(getColor(R.color.placeholder_grey))
+                .setHighlightAlpha(.9f)
+                .setHighlightColor(Color.WHITE)
+                .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
+                .build()
+
+            val shimmerDrawable = ShimmerDrawable()
+            shimmerDrawable.setShimmer(shimmer)
+
             Picasso.get()
                 .load("https://oficinacordova.azurewebsites.net/android/rest/produto/image/${it.idProduto}")
+                .placeholder(shimmerDrawable)
                 .into(cardBinding.imagem)
 
             binding.container.addView(cardBinding.root)
