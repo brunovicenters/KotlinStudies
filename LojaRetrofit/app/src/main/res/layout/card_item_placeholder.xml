@@ -8,14 +8,14 @@
         android:layout_margin="32dp"
         app:cardElevation="3dp"
         app:cardUseCompatPadding="true"
-        android:id="@+id/cardContainer">
+        android:id="@+id/cardContainer"
+        app:cardBackgroundColor="#ff424242">
 
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
 
         <androidx.cardview.widget.CardView

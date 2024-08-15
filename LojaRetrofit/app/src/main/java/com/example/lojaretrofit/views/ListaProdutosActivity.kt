@@ -27,6 +27,10 @@ class ListaProdutosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityListaProdutosBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.swpRefresh.setOnRefreshListener {
+            updateProdutos()
+        }
     }
 
     override fun onResume() {
@@ -54,11 +58,7 @@ class ListaProdutosActivity : AppCompatActivity() {
                 call: Call<List<Produto>>,
                 response: Response<List<Produto>>
             ) {
-                binding.progressBar.visibility = View.GONE
-                binding.container.visibility = View.VISIBLE
-                binding.shimmer.visibility = View.GONE
-
-                binding.shimmer.stopShimmer()
+                turnOffLoading()
 
                 if (response.isSuccessful) {
                     val listaProdutos = response.body()
@@ -76,11 +76,7 @@ class ListaProdutosActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Produto>>, t: Throwable) {
-                binding.progressBar.visibility = View.GONE
-                binding.container.visibility = View.VISIBLE
-                binding.shimmer.visibility = View.GONE
-
-                binding.shimmer.stopShimmer()
+                turnOffLoading()
 
                 Snackbar.make(
                     binding.container,
@@ -93,10 +89,23 @@ class ListaProdutosActivity : AppCompatActivity() {
         }
 
         call.enqueue(callback)
+        turnOnLoading()
+    }
+
+    private fun turnOffLoading() {
+        binding.progressBar.visibility = View.GONE
+        binding.container.visibility = View.VISIBLE
+        binding.shimmer.visibility = View.GONE
+        binding.shimmer.stopShimmer()
+        binding.swpRefresh.isRefreshing = false
+    }
+
+    private fun turnOnLoading() {
         binding.progressBar.visibility = View.VISIBLE
         binding.container.visibility = View.INVISIBLE
         binding.shimmer.visibility = View.VISIBLE
         binding.shimmer.startShimmer()
+        binding.swpRefresh.isRefreshing = true
     }
 
     fun updateUI(list: List<Produto>?) {
@@ -113,7 +122,7 @@ class ListaProdutosActivity : AppCompatActivity() {
                 .setAutoStart(true)
                 .setDuration(1000)
                 .setBaseColor(getColor(R.color.placeholder_grey))
-                .setHighlightAlpha(.9f)
+                .setBaseAlpha(.9f)
                 .setHighlightColor(Color.WHITE)
                 .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
                 .build()
