@@ -29,7 +29,7 @@ class ListaProdutosRVActivity : AppCompatActivity() {
         binding = ActivityListaProdutosRvactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = ProdutoRecyclerViewAdapter(lista)
+        adapter = ProdutoRecyclerViewAdapter(lista, this)
 
         binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
 
